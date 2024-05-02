@@ -1,28 +1,48 @@
-function includesKg(productName) {
-    return productName.includes("kg.");
+
+class kilogramsCheck {
+    // ONLY WORKING IF PRODUCT HAVE Kg. at NAME AND PRICED FOR 1KG
+    constructor() {
+        this.cart =document.getElementsByClassName("cart-body mx-5 overflow-y-scroll max-h-full flex-1 scrolling-touch flex flex-col items-center content-center justify-center")
+        this.product = document.getElementsByClassName("ml-3")
+        this.productName = String(document.getElementsByClassName("font-body text-sm text-secondary"))
+        this.finalPrice= 0
+        this.originalPrice = parseInt(document.getElementsByClassName("text-secondary text-base font-body"))
+        this.modifiedProducts=[]
+    }
+
+    includesKg(productName) {
+       console.log(productName)
+       if(productName.includes("Kg."))
+       this.extractPricePerKilo()
+       return productName
+    }
+
+    extractPricePerKilo() {
+     this.setupEventListeners()
+     finalPrice = this.originalPrice * weightInput
+    
+    }
+
+    setupEventListeners() {
+        document.querySelectorAll('.product').forEach(product => {
+            product.querySelector('button').addEventListener('click', () => {
+                this.includesKg()
+                if (this.includesKg) {
+                    let weightInput = prompt("Introduce los kilogramos que deseas comprar:");
+                    if (weightInput && !isNaN(weightInput)) {
+                        this.modifiedProducts.push(`${this.productName} + ${this.finalPrice}`);
+                        addToCart()
+                    } else {
+                        alert("Por favor, introduce una cantidad válida.");
+                    }
+                }
+            });
+        });
+    }
+    addToCart(modifiedProducts) {
+        this.cart.push(modifiedProducts);
+    }
 }
-
-function extractPricePerKilo(productDescription) {
-    let priceMatch = productDescription.match(/(\d+)€\/kg/); 
-    return priceMatch ? parseInt(priceMatch[1]) : null;
-}
-
-document.querySelectorAll('.product').forEach(product => {
-    product.querySelector('button').addEventListener('click', function() {
-        let productName = product.querySelector('.name').innerText;
-        if (includesKg(productName)) { 
-            let pricePerKilo = extractPricePerKilo(product.querySelector('.description').innerText);
-            let weightInput = prompt("Introduce los kilogramos que deseas comprar:");
-            if (weightInput && !isNaN(weightInput)) {
-                let totalPrice = weightInput * pricePerKilo;
-                alert(`Has añadido ${weightInput}kg a tu carrito. Precio total: ${totalPrice}€`);
-            } else {
-                alert("Por favor, introduce una cantidad válida.");
-            }
-        }
-    });
-});
-
-
+new kilogramsCheck()
 
 
