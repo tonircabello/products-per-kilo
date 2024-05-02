@@ -11,16 +11,15 @@ class kilogramsCheck {
     }
 
     includesKg(productName) {
-       console.log(productName)
+       
        if(productName.includes("Kg."))
        this.extractPricePerKilo()
-       return productName
+       
     }
 
     extractPricePerKilo() {
-     this.setupEventListeners()
      finalPrice = this.originalPrice * weightInput
-    
+     this.setupEventListeners()
     }
 
     setupEventListeners() {
@@ -31,7 +30,7 @@ class kilogramsCheck {
                     let weightInput = prompt("Introduce los kilogramos que deseas comprar:");
                     if (weightInput && !isNaN(weightInput)) {
                         this.modifiedProducts.push(`${this.productName} + ${this.finalPrice}`);
-                        addToCart()
+                        this.addNewProduct()
                     } else {
                         alert("Por favor, introduce una cantidad válida.");
                     }
@@ -39,7 +38,7 @@ class kilogramsCheck {
             });
         });
     }
-    addToCart(modifiedProducts) {
+    addNewProduct(modifiedProducts) {
         this.cart.push(modifiedProducts);
     }
 }
