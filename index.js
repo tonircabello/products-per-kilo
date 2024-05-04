@@ -24,7 +24,8 @@ class kilogramsCheck {
 
     setupEventListeners() {
         document.querySelectorAll('.product').forEach(product => {
-            product.querySelector('button').addEventListener('click', () => {
+            product.querySelectorAll('.bg-accent.rounded-full.p-1').forEach(button => {
+                addEventListener('click', () => {
                 this.includesKg()
                 if (this.includesKg) {
                     let weightInput = prompt("Introduce los kilogramos que deseas comprar:");
@@ -35,6 +36,7 @@ class kilogramsCheck {
                         alert("Por favor, introduce una cantidad válida.");
                     }
                 }
+                })
             });
         });
     }
